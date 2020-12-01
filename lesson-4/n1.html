@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var whatNumber = {};
+        var number = prompt("Введите число от 0 до 999: ");
+
+        function numToObj(y) {
+            var array = y.split('');
+            while (array.length < 3) {
+                array.unshift(0);
+            }
+            var objNumber = {};
+            if (array.length > 3) {
+                console.log("Вы ввели слишком большое число");
+                return objNumber;
+            }
+            else {
+                objNumber['единицы'] = +array[2];
+                objNumber['десятки'] = +array[1];
+                objNumber['сотни'] = +array[0];
+                return objNumber;
+            }
+        }
+
+        whatNumber = numToObj(number);
+        if (whatNumber['единицы'] != NaN || whatNumber['десятки'] != NaN || whatNumber['сотни'] != NaN) {
+            console.log(whatNumber);
+
+        }
+        else {
+            console.log("Вы ввели недопустимое значение")
+        }
+
+    </script>
+</body>
+
+</html>
