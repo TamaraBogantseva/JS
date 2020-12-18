@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.chess {
+    padding: 50px 500px;
+}
+
+.container {
+    display: flex;
+}
+
+.board {
+    border: 2px solid #000;
+    display: flex;
+    flex-wrap: wrap;
+    width: 480px;
+    border-spacing: 0px;
+}
+
+.rows {
+    width: 60px;
+    height: 60px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.rows__white {
+    background-color: burlywood;
+}
+
+.rows__black {
+    background-color: rgb(104, 54, 54);
+    /* color: #fff; */
+}
+
+.letters__line {
+    display: flex;
+    width: 600px;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.letter__symbol {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.letter__line_top {
+    transform: rotate(180deg);
+}
+
+.numbers__line {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.numbers__line_second {
+    transform: rotate(180deg);
+}
+
+.numbers__symbol {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.figures__white {
+    color: #ffffff;
+}
