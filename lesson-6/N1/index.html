@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="big_picture"></div>
+    <div id="gallery">
+        <img id="image_1" src="img/small/small1.jpg" height="260" width="400">
+        <img id="image_2" src="img/small/small2.jpg" height="260" width="400">
+        <img id="image_3" src="img/small/small3.jpg" height="260" width="400">
+    </div>
+
+    <script>
+        function init() {
+            var clickedImage = document.getElementsByTagName("img");
+            for (var i = 0; i < clickedImage.length; i++) {
+                clickedImage[i].onclick = changeBigPicture;
+            }
+        }
+
+        function changeBigPicture(element) {
+            //console.log("Функция вызвана" + element.target);
+            var bigDiv = document.getElementById("big_picture");
+            bigDiv.innerHTML = ""; //удаляем все элементы из блока
+            var eventElement = element.target;
+            var imageNameParts = eventElement.id.split("_"); //создаем массив из id кликнутой картинки
+            var src = "img/big/big" + imageNameParts[1] + ".jpg"; //добавляем номер из id в путь к большой
+            var imageDomElement = document.createElement("img"); //создаем новый элемент
+            imageDomElement.src = src; //добавляем аттрибут
+            imageDomElement.onerror = function emptyImage() {
+                alert("К сожалению, изображение не найдено");
+            }
+            bigDiv.append(imageDomElement); //выводим
+        }
+
+
+
+        window.onload = init;
+
+    </script>
+</body>
+
+</html>
