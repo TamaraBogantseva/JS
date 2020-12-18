@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="chess"></div>
+    <script>
+
+
+        var board, container;
+        var tr, td;
+        var letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+        var lettersLine, p;
+
+        var figure;
+
+        var numbersLine, lastNumbersLine;
+        var numbersSymbol;
+        var positionBlock = document.getElementsByClassName("rows");
+        var positionLine = document.getElementsByClassName("lines");
+        var numbers = ["8", "7", "6", "5", "4", "3", "2", "1"];
+
+        //во втором задании тут должны быть массивы строк с буквенными обозначениями фигур соответственно
+        var whiteMainFigures = [
+            "&#9814",
+            "&#9816",
+            "&#9815",
+            "&#9812",
+            "&#9813",
+            "&#9815",
+            "&#9816",
+            "&#9814"
+        ];
+        var PawnFigures = ["&#9817", "&#9817", "&#9817", "&#9817", "&#9817", "&#9817", "&#9817", "&#9817"];
+        var blackMainFigures = [
+            "&#9820",
+            "&#9822",
+            "&#9821",
+            "&#9818",
+            "&#9819",
+            "&#9821",
+            "&#9822",
+            "&#9820"
+        ];
+
+
+        makeBoard();
+
+
+        function makeBoard() {
+            lettersLine = document.createElement("div"); //создаем контейнер для букв
+            lettersLine.className = "letters__line";
+            for (i = 0; i < 8; i++) {
+                p = document.createElement("p");
+                p.className = "letter__symbol";
+                // p.classList.add(x);
+                lettersLine.append(p);
+                p.insertAdjacentText("afterbegin", letters[i]);
+            }
+            container = document.createElement("div"); //создаем общий контейнер для доски с цифрами, так как кроме флексов как все расположить я не придумала
+            container.className = "container";
+            numbersLine = document.createElement("div"); //создаем блок с цифрами
+            numbersLine.className = "numbers__line";
+            board = document.createElement("table"); //создаем саму доску
+            board.className = "board";
+            container.append(board);
+            for (var i = 0; i < 8; i++) {
+                tr = document.createElement("tr"); //линии
+                tr.className = "lines";
+                board.append(tr);
+                numbersSymbol = document.createElement("div");
+                numbersSymbol.className = "numbers__symbol";
+                numbersLine.append(numbersSymbol);
+                numbersSymbol.insertAdjacentText("afterbegin", numbers[i]);
+                for (var y = 0; y < 8; y++) {
+                    td = document.createElement("td"); //ячейки
+                    td.className = "rows";
+                    tr.append(td);
+                    if ((y + i) % 2 == 0) { //цвет
+                        td.classList.add("rows__white");
+                    }
+                    else {
+                        td.classList.add("rows__black");
+                    }
+                    //во втором задании тут соответственно будут расставляться массивы букв, алгоритм не меняется
+                    switch (i) { //расставляем фигуры
+                        case 0:
+                            td.innerHTML = whiteMainFigures[y];
+                            td.classList.add("figures__white");
+                            break
+                        case 1:
+                            td.innerHTML = PawnFigures[y];
+                            td.classList.add("figures__white");
+                            break
+                        case 6:
+                            td.innerHTML = PawnFigures[y];
+                            break
+                        case 7:
+                            td.innerHTML = blackMainFigures[y];
+                            break
+                    }
+                }
+            }
+            firstLettersLine = lettersLine.cloneNode(true); //делаем вторую линию букв
+            firstLettersLine.classList.add("letter__line_top"); //добавляем класс чтобы стилизовать (поворот)
+            lastNumbersLine = numbersLine.cloneNode(true); //делаем вторую линию цифр
+            lastNumbersLine.classList.add("numbers__line_second");
+            document.getElementsByClassName("chess")[0].append(firstLettersLine);
+            document.getElementsByClassName("chess")[0].append(container); //выводим доску
+            board.insertAdjacentElement("beforeBegin", numbersLine); //выводим цифры
+            board.insertAdjacentElement("afterend", lastNumbersLine); //выводим вторую линию цифр
+            container.insertAdjacentElement("afterend", lettersLine); //выводим нижнюю линию букв
+        }
+
+    </script>
+</body>
+
+</html>
